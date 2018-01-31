@@ -1,13 +1,13 @@
-export const times = (i: number, cb: (n: number) => any, l = i) => {
+export function times(i: number, cb: (n: number) => any, l = i): void {
   if (i === 0) {
     return;
   }
 
   cb(l - i);
   times(i - 1, cb, l);
-};
+}
 
-export const shuffle = (array: Array<any>): Array<any> => {
+export function shuffle(array: any[]): any[] {
   let currentIndex = array.length;
   let temporaryValue: any;
   let randomIndex: number;
@@ -22,4 +22,9 @@ export const shuffle = (array: Array<any>): Array<any> => {
   }
 
   return array;
-};
+}
+
+export function importToArray<Key extends string, PropType>(importObject: Record<Key, PropType>): PropType[] {
+  const keys = Object.getOwnPropertyNames(importObject);
+  return keys.filter(key => key.indexOf("__") !== 0).map(key => importObject[key]);
+}

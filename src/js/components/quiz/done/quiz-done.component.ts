@@ -32,7 +32,7 @@ export class QuizDoneComponent extends Unsubscriber {
       this.subscribe();
   }
 
-  public show() {
+  public show(): void {
     if (!this._hidden) {
       return;
     }
@@ -46,7 +46,7 @@ export class QuizDoneComponent extends Unsubscriber {
       .show(this._elementRef.nativeElement);
   }
 
-  public hide() {
+  public hide(): void {
     if (this._hidden) {
       return;
     }
@@ -59,7 +59,7 @@ export class QuizDoneComponent extends Unsubscriber {
       .hide(this._elementRef.nativeElement);
   }
 
-  private subscribe() {
+  private subscribe(): void {
     let onCompleted = this._quizService
       .onCompleted
       .subscribe(() => {

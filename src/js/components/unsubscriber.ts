@@ -1,4 +1,3 @@
-import { OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
 export class Unsubscriber {
@@ -17,7 +16,7 @@ export class Unsubscriber {
     };
   }
 
-  protected unsubscribe() {
+  protected unsubscribe(): void {
     for (let i = 0, len = this._subscriptions.length; i < len; i++) {
       this._subscriptions[i].unsubscribe();
     }
@@ -25,7 +24,7 @@ export class Unsubscriber {
     this._subscriptions = [];
   }
 
-  get subscriptions() {
+  get subscriptions(): Subscription[] {
     return this._subscriptions;
   }
 

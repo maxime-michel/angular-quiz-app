@@ -22,20 +22,20 @@ export class QuizNavComponent {
 
   }
 
-  public get progress() {
+  public get progress(): number {
     return this._quizService.progress();
   }
 
-  public goHome() {
-    this.onGoHome.next();
+  public goHome(): void {
+    this.onGoHome.emit();
   }
 
-  public refresh(navAnimatesDirective: AnimatesDirective) {
-    this.onRefresh.next();
+  public refresh(navAnimatesDirective: AnimatesDirective): void {
+    this.onRefresh.emit();
   }
 
-  public close(navAnimatesDirective: AnimatesDirective) {
-    this.onClose.next();
+  public close(navAnimatesDirective: AnimatesDirective): void {
+    this.onClose.emit();
     navAnimatesDirective.hide({ type: 'fadeOutUp', delay: 400, duration: 600 });
   }
 

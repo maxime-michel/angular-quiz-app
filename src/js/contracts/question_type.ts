@@ -1,10 +1,3 @@
-export enum QuestionType {
-  AlbumNameFromImage,
-  TrackNameFromPreview,
-  ArtistNameFromTrackName,
-  ArtistNameFromAlbumName
-  // ,ReleaseDateFromTrackName,
-  // ReleaseDateFromAlbumName
-}
-
+import { QuestionType } from 'app/components/quiz/questions/types';
+export { QuestionType };
 export default QuestionType;

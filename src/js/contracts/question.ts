@@ -1,17 +1,21 @@
+import { TemplateRef } from '@angular/core';
+
+import { GenericQuestion } from 'app/components';
 import Track from './track';
-import Status from './status';
 import QuestionType from './question_type';
-import Answer from './answer';
 
 export interface Question {
-  id?: number;
+  id: number;
   type: QuestionType;
-  title: string;
-  description?: string;
-  answers: Answer[];
-  answered?: boolean;
   track: Track;
-  status: Status;
+  title?: string;
+  description?: string;
+  answer?: any;
+  correctAnswer?: any;
+  answered?: boolean;
+  wasCorrect?: boolean;
+  component?: GenericQuestion;
+  statusTemplate?: TemplateRef<any>;
 }
 
 export default Question;

@@ -1,1 +1,1 @@
-export * from './quiz-app.component';
+export * from './app.component';

@@ -5,10 +5,8 @@ import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/map';
 
 import { Injectable, EventEmitter, isDevMode } from '@angular/core';
-import { Http, Response } from '@angular/http';
 
 import { shuffle, scrollTo } from 'app/helpers';
-import { TrackTransformer } from 'app/support';
 import { PlaylistService } from './playlist.service';
 
 import { Playlist, Track, Question, QuestionType } from 'app/contracts';
@@ -45,19 +43,19 @@ export class QuizService {
     return this.loadProductionData();
   }
 
-  public ready() {
+  public ready(): void {
     scrollTo(document.body, 0, this._scrollDuration).then(() => {
       this._onReady.emit();
     });
   }
 
-  public close() {
+  public close(): void {
     scrollTo(document.body, 0, this._scrollDuration).then(() => {
       this.onClose.emit();
     });
   }
 
-  public refresh() {
+  public refresh(): void {
     this._progress = 0;
     this._playlist = null;
     this._tracks = [];
@@ -73,50 +71,54 @@ export class QuizService {
       });
   }
 
-  public activateQuestion(questionNumber: number) {
+  public activateQuestion(questionNumber: number): void {
     scrollTo(document.body, 0, this._scrollDuration).then(() => {
       this._onActivateQuestion.emit(questionNumber);
     });
   }
 
-  public completed() {
+  public completed(): void {
     scrollTo(document.body, 0, this._scrollDuration).then(() => {
       this._onCompleted.emit();
     });
   }
 
-  public progress() {
-    return this.calculateProgress();
-  }
-
-  get onReady() {
-    return this._onReady;
-  }
-
-  get onActivateQuestion() {
-    return this._onActivateQuestion;
-  }
-
-  get onCompleted() {
-    return this._onCompleted;
-  }
-
-  get onClose() {
-    return this._onClose;
-  }
-
-  get onRefresh() {
-    return this._onRefresh;
-  }
-
-  public getCorrectAnswer(question: Question) {
-    for (let answer of question.answers) {
-      if (answer.correct) {
-        return answer;
+  public questionById(id: number): Question {
+    for (let question of this._questions) {
+      if (question.id === id) {
+        return question;
       }
     }
 
     return null;
+  }
+
+  public progress(): number {
+    return this.calculateProgress();
+  }
+
+  get onReady(): EventEmitter<void> {
+    return this._onReady;
+  }
+
+  get onActivateQuestion(): EventEmitter<number> {
+    return this._onActivateQuestion;
+  }
+
+  get onCompleted(): EventEmitter<void> {
+    return this._onCompleted;
+  }
+
+  get onClose(): EventEmitter<void> {
+    return this._onClose;
+  }
+
+  get onRefresh(): EventEmitter<void> {
+    return this._onRefresh;
+  }
+
+  public getCorrectAnswer(question: Question) {
+    return question.correctAnswer;
   }
 
   private loadProductionData(): Rx.Observable<Question[]> {
@@ -142,11 +144,11 @@ export class QuizService {
       .map((tracks: Track[]) => this.buildQuestions(tracks));
   }
 
-  private calculateProgress() {
+  private calculateProgress(): number {
     let count = 0;
 
     for (let question of this.questions) {
-      if (question.status.answered) {
+      if (question.answered) {
         count++;
       }
     }
@@ -155,15 +157,27 @@ export class QuizService {
   }
 
   private buildQuestions(randomTracks: Track[]) {
-    let trackTransformer = new TrackTransformer(this._playlist, this._tracks);
     let questions: Question[] = [];
     let count = 0;
 
     for (let track of randomTracks) {
       count++;
 
-      let type = count === 1 ? QuestionType.TrackNameFromPreview : null;
-      let question = trackTransformer.toQuestion(track, type);
+      let type = count === 1 ? QuestionType.Audio : null;
+
+      type = type === null ?
+        Math.floor(Math.random() * (Object.keys(QuestionType).length / 2))
+        : type;
+
+      let question: Question = {
+        id: -1,
+        type: type,
+        track: track,
+        answer: undefined,
+        correctAnswer: undefined,
+        answered: false,
+        wasCorrect: false
+      };
 
       questions.push(question);
     }
@@ -230,6 +244,14 @@ export class QuizService {
 
   get questions(): Question[] {
     return this._questions || [];
+  }
+
+  get playlist(): Playlist {
+    return this._playlist;
+  }
+
+  get tracks(): Track[] {
+    return this._tracks;
   }
 
 }

@@ -1,4 +1,4 @@
-# Angular 2 Music Quiz
+# Angular Music Quiz
 
 # Quickstart
 
@@ -23,7 +23,7 @@ was called "Hypermedia User Experience Engineering".
 # Credits
 
 This app uses:
-- [Angular2](https://angular.io) as a front-end framework.
+- [Angular](https://angular.io) as a front-end framework.
 - [Express](https://github.com/expressjs/express) with [spotify-web-api-node](https://github.com/thelinmichael/spotify-web-api-node) for the server.
 - [Spotify API](https://developer.spotify.com/web-api/) for the quiz data.
 - [css-animator](https://github.com/fabiandev/css-animator) and [animate.css](https://daneden.github.io/animate.css/) for animations.

@@ -1,8 +1,8 @@
-export const scrollTo = (element: HTMLElement, to: number, duration: number): Promise<void> => {
+export function scrollTo(element: HTMLElement, to: number, duration: number): Promise<void> {
   return new Promise((resolve) => {
     _scrollTo(element, to, duration, resolve);
   });
-};
+}
 
 const _scrollTo = (element: HTMLElement, to: number, duration: number, resolve: () => void): void => {
   if (duration <= 0) {
