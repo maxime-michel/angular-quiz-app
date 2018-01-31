@@ -2,7 +2,8 @@ export enum QuestionType {
   Album,
   Audio,
   Image,
-  Track
+  Track,
+  Simple
 }
 
 export default QuestionType;

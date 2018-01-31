@@ -1,0 +1,22 @@
+<div class="col s12 m8 offset-m2 l6 offset-l3">
+  <div class="card-panel grey lighten-5 z-depth-1">
+    <div class="row valign-wrapper">
+      <div class="col s2">
+        <i class="material-icons circle green white-text">sentiment_satisfied</i>
+      </div>
+      <div class="col s10 truncate">
+        {{ question.title }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Using the previously created answer type -->
+<answer-yesno [question]="question" (onAnswerChange)="answerChanged($event)">
+
+<!-- It is possible to omit the following, but it gives you
+the ability to add a custom item, image, or anything else
+to the status overview -->
+<ng-template #statusTemplate>
+  <i class="material-icons circle green white-text">sentiment_satisfied</i>
+</ng-template>

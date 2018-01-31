@@ -1,0 +1,10 @@
+<div class="row answers">
+  <div class="col l6 m12 s12">
+    <input #checkYes id="answer{{question.id}}_yes" type="checkbox" (change)="answerChanged(checkYes.checked ? 'yes' : null)" [disabled]="!checkYes.checked && hasAnswer()">
+    <label htmlFor="answer{{question.id}}_yes" class="grey-text text-darken-3">Yes</label>
+  </div>
+  <div class="col l6 m12 s12">
+    <input #checkNo id="answer{{question.id}}_no" type="checkbox" (change)="answerChanged(checkNo.checked ? 'no' : null)" [disabled]="!checkNo.checked && hasAnswer()">
+    <label htmlFor="answer{{question.id}}_no" class="grey-text text-darken-3">No</label>
+  </div>
+</div>
