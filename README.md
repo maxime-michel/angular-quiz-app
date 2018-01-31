@@ -38,7 +38,7 @@ This app uses:
 ### Dependencies
 
 We use npm or yarn and jspm (currently `jspm@beta`) to install dependencies.  
-We just need [gulp](http://gulpjs.com) and [jspm](http://jspm.io) to be installed globally, by using the `-g` flag.
+For simplicity [gulp](http://gulpjs.com) and [jspm](http://jspm.io) can be installed globally, by using the `-g` flag.
 
 ```sh
 $ npm install -g gulp jspm@beta
@@ -69,7 +69,7 @@ To install **client side dependencies**, use jspm:
 $ jspm install modulename && npm run update-paths
 ```
 
-The execution of `update-paths` is required, to have all jspm package also mapped
+The execution of `update-paths` is required to have all jspm package also mapped
 in `compilerOptions.paths` of `tsconfig.json`.
 
 > jspm also supports `install npm:modulename` and `install github:user/repo`
@@ -83,13 +83,11 @@ compiler about definitions. You can install them via npm just like this:
 $ npm install @types/core-js
 ```
 
-> Definitions will be available automatically in the TypeScript project.
-
 ### Building
 
 #### Production Build
 
-The production build should be used, to compile the app for **deployment**.
+The production build should be used to compile the app for **deployment**.
 It will do it's best to keep the target files as small as possible.
 
 ```sh
@@ -98,8 +96,7 @@ $ gulp build
 
 #### Development Build
 
-A development build performs almost the same tasks as a production build, but
-may be faster.
+A development build performs similar tasks as a production build, but makes debugging a lot easier.
 
 ```sh
 $ gulp dev-build
@@ -107,9 +104,8 @@ $ gulp dev-build
 
 #### Watch Changes
 
-To make it easier and, most important, faster to compile changes use the
-watch task. It will perform only tasks to provide files, the dev-server needs
-processed (like compiling to JavaScript and CSS).
+During development make use of the watch task, which does not need to compile the entire app on each change.
+The application will be transpiled on demand in the browser.
 
 ```sh
 $ gulp watch
@@ -265,3 +261,169 @@ of the application code.
 
 For the dev server or a dev build, `src/js/main.dev.ts`
 will be used. For a production build, `src/js/main.prod.ts` is the entry point of the app.
+
+## Extending
+
+It is possible to add questions and answers to this app, by performing a few steps discussed by examples below.
+
+### Answers
+
+To add a custom answer `yesno`, create a directory `yesno` in `src/js/components/quiz/answers`, containing the following files:
+
+- `answer-yesno.component.ts`
+- `answer-yesno.html`
+- `answer-yesno.css`
+- `index.ts`
+
+```ts
+// answer-yesno.component.ts
+
+import { Component } from '@angular/core';
+import { GenericAnswer } from 'app/components';
+
+import template from './answer-yesno.html';
+import mainStyle from './answer-yesno.css';
+import commonStyle from '../common.css';
+
+@Component({
+  selector: 'answer-yesno',
+  template: template,
+  styles: [
+    commonStyle,
+    mainStyle
+  ]
+})
+export class AnswerYesNoComponent extends GenericAnswer {
+
+  protected init(): void {
+    
+  }
+
+}
+```
+
+```html
+<!-- answer-yesno.html -->
+
+<div class="row answers">
+  <div class="col l6 m12 s12">
+    <input #checkYes id="answer{{question.id}}_yes" type="checkbox" (change)="answerChanged(checkYes.checked ? 'yes' : null)" [disabled]="!checkYes.checked && hasAnswer()">
+    <label htmlFor="answer{{question.id}}_yes" class="grey-text text-darken-3">Yes</label>
+  </div>
+  <div class="col l6 m12 s12">
+    <input #checkNo id="answer{{question.id}}_no" type="checkbox" (change)="answerChanged(checkNo.checked ? 'no' : null)" [disabled]="!checkNo.checked && hasAnswer()">
+    <label htmlFor="answer{{question.id}}_no" class="grey-text text-darken-3">No</label>
+  </div>
+</div>
+```
+
+```css
+/* answer-yesno.css */
+```
+
+```ts
+// index.ts
+export * from './answer-yesno.component';
+```
+
+Finally add an export to `src/js/components/quiz/answers/answers.ts`:
+
+```ts
+export * from './yesno/index';
+```
+
+### Questions
+
+To add a new question type `simple`, define it in `src/js/components/quiz/questions/types.ts`:
+
+```ts
+export enum QuestionType {
+  // ...
+  Simple,
+  // ...
+}
+```
+
+Also create a directory `simple` in `src/js/components/quiz/questions`, containing the following files:
+
+- `question-simple.component.ts`
+- `question-simple.html`
+- `question-simple.css`
+- `index.ts`
+
+```ts
+// question-simple.component.ts
+
+import { Component } from '@angular/core';
+import { GenericQuestion, QuestionType } from 'app/components';
+
+import template from './question-simple.html';
+import mainStyle from './question-simple.css';
+import commonStyle from '../common.css';
+
+@Component({
+  selector: 'question-simple',
+  template: template,
+  styles: [
+    commonStyle,
+    mainStyle
+  ]
+})
+export class QuestionSimpleComponent extends GenericQuestion {
+
+  public static type = QuestionType.Simple;
+
+  public init(): void {
+    this.setTitle('Do you like this quiz?');
+    this.setCorrectAnswer('yes');
+  }
+
+}
+```
+
+```html
+<!-- question-simple.html -->
+
+<div class="col s12 m8 offset-m2 l6 offset-l3">
+  <div class="card-panel grey lighten-5 z-depth-1">
+    <div class="row valign-wrapper">
+      <div class="col s2">
+        <i class="material-icons circle green white-text">sentiment_satisfied</i>
+      </div>
+      <div class="col s10 truncate">
+        {{ question.title }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Using the previously created answer type -->
+<answer-yesno [question]="question" (onAnswerChange)="answerChanged($event)">
+
+<!-- It is possible to omit the following, but it gives you
+the ability to add a custom item, image, or anything else
+to the status overview -->
+<ng-template #statusTemplate>
+  <i class="material-icons circle green white-text">sentiment_satisfied</i>
+</ng-template>
+
+```
+
+```css
+/* question-simple.css */
+```
+
+```ts
+// index.ts
+export * from './question-simple.component';
+```
+
+Finally add an export to `src/js/components/quiz/questions/questions.ts`:
+
+```ts
+export * from './simple/index';
+```
+
+### This is it
+
+The application will automatically consider the added question and will use it randomly.
