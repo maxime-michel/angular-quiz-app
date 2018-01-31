@@ -1,5 +1,4 @@
 export * from './album';
-export * from './answer_changed_event';
 export * from './artist';
 export * from './image';
 export * from './item';

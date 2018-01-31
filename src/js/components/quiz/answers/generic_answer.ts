@@ -7,18 +7,18 @@ export abstract class GenericAnswer implements OnInit {
   @Output() public onAnswerChange: EventEmitter<any> = new EventEmitter();
 
   public ngOnInit(): void {
-    this.buildAnswers();
+    this.init();
   }
 
-  public answerChanged(answer: any, removed: boolean): void {
-    this.onAnswerChange.emit({ answer, removed });
+  public answerChanged(answer: any | null): void {
+    this.onAnswerChange.emit(answer);
   }
 
   public hasAnswer(): boolean {
     return this.question.answer !== undefined;
   }
 
-  protected abstract buildAnswers(): void;
+  protected abstract init(): void;
 
 }
 

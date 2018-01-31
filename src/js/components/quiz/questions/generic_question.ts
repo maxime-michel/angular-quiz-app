@@ -1,6 +1,6 @@
 import { EventEmitter, ViewChild, TemplateRef, AfterViewInit } from '@angular/core';
 import { Unsubscriber } from 'app/components';
-import { Question, AnswerChangedEvent } from 'app/contracts';
+import { Question } from 'app/contracts';
 
 export abstract class GenericQuestion extends Unsubscriber implements AfterViewInit {
   @ViewChild('statusTemplate') public statusTemplate: TemplateRef<any>;
@@ -35,8 +35,8 @@ export abstract class GenericQuestion extends Unsubscriber implements AfterViewI
     return this.hasAnswer() && this.question.correctAnswer === this.question.answer;
   }
 
-  public answerChanged({ answer, removed }: AnswerChangedEvent): void {
-    if (removed) {
+  public answerChanged(answer: any | null): void {
+    if (answer === null) {
       this.setAnswer(void 0);
       this.answerRemoved.emit();
       return;

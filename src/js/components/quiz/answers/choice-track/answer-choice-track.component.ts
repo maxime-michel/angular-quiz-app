@@ -24,7 +24,7 @@ export class AnswerChoiceTrackComponent extends GenericAnswer {
     super();
   }
 
-  protected buildAnswers(): void {
+  protected init(): void {
     const answers = [{ title: this.question.track.name, correct: true }];
 
     for (let randomTrack of randomTracksExcluding(this.question.track.id, 3, this.quizService.tracks)) {
