@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
 
 import { GenericQuestion, QuestionType } from 'app/components';
 import { QuizService } from 'app/services';
-import { shuffle, randomTracksExcluding } from 'app/helpers';
 
 import template from './question-audio.html';
 import mainStyle from './question-audio.css';
@@ -29,7 +28,6 @@ export class QuestionAudioComponent extends GenericQuestion {
 
   private static _players: Player[] = [];
 
-  private _answers: { title: string, correct: boolean }[] = [];
   private _player: HTMLAudioElement;
   private _countdown = 10;
 
@@ -136,10 +134,6 @@ export class QuestionAudioComponent extends GenericQuestion {
     QuestionAudioComponent._players.push(entry);
 
     return entry;
-  }
-
-  get answers() {
-    return this._answers;
   }
 
   get countdown(): number {

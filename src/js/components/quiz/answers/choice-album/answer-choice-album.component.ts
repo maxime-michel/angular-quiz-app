@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { QuizService } from 'app/services';
-import { GenericAnswer, QuestionType } from 'app/components';
+import { GenericAnswer } from 'app/components';
 import { shuffle, randomTracksExcluding } from 'app/helpers';
 
 import template from './answer-choice-album.html';
