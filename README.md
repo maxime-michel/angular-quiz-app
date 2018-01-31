@@ -272,7 +272,7 @@ To add a custom answer `yesno`, create a directory `yesno` in `src/js/components
 
 - `answer-yesno.component.ts`
 - `answer-yesno.html`
-- `answer-yesno.css`
+- `answer-yesno.css` (optional)
 - `index.ts`
 
 ```ts
@@ -317,10 +317,6 @@ export class AnswerYesNoComponent extends GenericAnswer {
 </div>
 ```
 
-```css
-/* answer-yesno.css */
-```
-
 ```ts
 // index.ts
 export * from './answer-yesno.component';
@@ -348,7 +344,7 @@ Also create a directory `simple` in `src/js/components/quiz/questions`, containi
 
 - `question-simple.component.ts`
 - `question-simple.html`
-- `question-simple.css`
+- `question-simple.css` (optional)
 - `index.ts`
 
 ```ts
@@ -401,16 +397,12 @@ export class QuestionSimpleComponent extends GenericQuestion {
 <answer-yesno [question]="question" (onAnswerChange)="answerChanged($event)">
 
 <!-- It is possible to omit the following, but it gives you
-the ability to add a custom item, image, or anything else
+the ability to add a custom icon, image, or anything else
 to the status overview -->
 <ng-template #statusTemplate>
   <i class="material-icons circle green white-text">sentiment_satisfied</i>
 </ng-template>
 
-```
-
-```css
-/* question-simple.css */
 ```
 
 ```ts
@@ -427,3 +419,5 @@ export * from './simple/index';
 ### This is it
 
 The application will automatically consider the added question and will use it randomly.
+
+> Try it! You can copy-paste the code above.
