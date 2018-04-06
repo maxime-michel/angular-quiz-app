@@ -1,5 +1,5 @@
 {
-  "name": "angular2-quiz-app",
+  "name": "angular-quiz-app",
   "version": "1.8.14",
   "description": "A music quiz in Angular 2+ using the Spotify API.",
   "main": "server/index.js",
@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/fabiandev/angular2-quiz-app.git"
+    "url": "https://github.com/fabiandev/angular-quiz-app.git"
   },
   "author": "Fabian Pirklbauer <hi@fabiandev.io>",
   "contributors": [
@@ -26,9 +26,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/fabiandev/angular2-quiz-app/issues"
+    "url": "https://github.com/fabiandev/angular-quiz-app/issues"
   },
-  "homepage": "https://github.com/fabiandev/angular2-quiz-app#readme",
+  "homepage": "https://github.com/fabiandev/angular-quiz-app#readme",
   "dependencies": {
     "animate.css": "^3.5.2",
     "body-parser": "^1.15.0",

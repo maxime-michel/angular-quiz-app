@@ -3,8 +3,8 @@
 # Quickstart
 
 ```sh
-$ git clone https://github.com/fabiandev/angular2-quiz-app.git
-$ cd angular2-quiz-app
+$ git clone https://github.com/fabiandev/angular-quiz-app.git
+$ cd angular-quiz-app
 $ npm install
 $ npm start
 ```
