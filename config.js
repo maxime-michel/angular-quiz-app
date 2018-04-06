@@ -97,7 +97,7 @@ config.tslint = {
 |
 | Define the source and destination path, as well as the
 | concatinated file name. You may also use less for styleUrls
-| within angular2.
+| within angular.
 |
 */
 config.less = {

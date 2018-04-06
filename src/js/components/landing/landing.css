@@ -47,11 +47,3 @@ a.btn {
   margin-top: 20px;
   margin-bottom: 20px;
 }
-
-.input-field /deep/ ul.dropdown-content li>a, .input-field /deep/ ul.dropdown-content li>span {
-  color: #00bcd4;
-}
-
-.input-field /deep/ ul.dropdown-content li.selected, .input-field /deep/ ul.dropdown-content li:hover {
-  background-color: rgba(236, 239, 241, 0.6);
-}

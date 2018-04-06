@@ -9,7 +9,7 @@ import template from './landing.html';
 import mainStyle from './landing.css';
 
 @Component({
-  selector: 'landing',
+  selector: 'landing-host',
   host: {
     'hidden': 'true'
   },
@@ -63,7 +63,7 @@ export class LandingComponent implements OnInit, AfterViewInit {
     this._regionSelection = value;
   }
 
-  public startQuiz() {
+  public startQuiz(): void {
     if (this.submitted) {
       return;
     }

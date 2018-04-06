@@ -7,11 +7,11 @@ import { Unsubscriber } from 'app/components';
 import { QuizService } from 'app/services';
 import { Question } from 'app/contracts';
 
-import template from './quiz-main.html';
-import mainStyle from './quiz-main.css';
+import template from './quiz.html';
+import mainStyle from './quiz.css';
 
 @Component({
-  selector: 'quiz-main',
+  selector: 'quiz-host',
   template: template,
   styles: [
     mainStyle
@@ -49,7 +49,7 @@ export class QuizComponent extends Unsubscriber implements OnInit {
     this.subscriptions.push(onRefresh);
   }
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     this.quizService
       .init(10)
       .subscribe((questions) => {
@@ -57,11 +57,11 @@ export class QuizComponent extends Unsubscriber implements OnInit {
       });
   }
 
-  public trackByQuestion(question: Question) {
+  public trackByQuestion(question: Question): number {
     return question.id;
   }
 
-  public onGoHome(navAnimatesDirective: AnimatesDirective) {
+  public onGoHome(navAnimatesDirective: AnimatesDirective): void {
     setTimeout(() => {
       this._router.navigate(['/']);
     }, 1000);
@@ -69,7 +69,7 @@ export class QuizComponent extends Unsubscriber implements OnInit {
     this.quizService.close();
   }
 
-  public onRefresh(navAnimatesDirective: AnimatesDirective) {
+  public onRefresh(navAnimatesDirective: AnimatesDirective): void {
     this.quizService.close();
 
     setTimeout(() => {
@@ -80,19 +80,19 @@ export class QuizComponent extends Unsubscriber implements OnInit {
     }, 700);
   }
 
-  public onClose(navAnimatesDirective: AnimatesDirective) {
+  public onClose(navAnimatesDirective: AnimatesDirective): void {
     this.onGoHome(navAnimatesDirective);
   }
 
-  get questions() {
+  get questions(): Question[] {
     return this._questions;
   }
 
-  get ready() {
+  get ready(): boolean {
     return this._ready;
   }
 
-  get quizService() {
+  get quizService(): QuizService {
     return this._quizService;
   }
 

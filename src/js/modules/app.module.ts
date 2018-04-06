@@ -10,11 +10,14 @@ import { AppErrorHandler } from 'app/facades';
 import { AnimatorModule } from 'css-animator';
 import { MaterializeModule } from 'angular2-materialize';
 
+import { ContainerRefDirective } from 'app/directives';
+import { QUESTION_COMPONENTS, ANSWER_COMPONENTS } from 'app/components';
+
 import {
   AppComponent,
   LandingComponent,
   QuizComponent,
-  QuizCardComponent,
+  QuestionComponent,
   QuizDoneComponent,
   QuizNavComponent,
   QuizStatusComponent
@@ -34,10 +37,14 @@ import {
     LandingComponent,
     QuizComponent,
     QuizNavComponent,
-    QuizCardComponent,
+    QuestionComponent,
     QuizDoneComponent,
-    QuizStatusComponent
+    QuizStatusComponent,
+    ContainerRefDirective,
+    ...QUESTION_COMPONENTS,
+    ...ANSWER_COMPONENTS
   ],
+  entryComponents: QUESTION_COMPONENTS,
   providers: [
     { provide: APP_BASE_HREF, useValue: '/' },
     { provide: ErrorHandler, useClass: AppErrorHandler }

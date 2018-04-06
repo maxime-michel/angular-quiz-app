@@ -19,7 +19,6 @@ export class QuizStatusComponent extends Unsubscriber implements AfterContentIni
 
   @Output() public modalActions = new EventEmitter<string | MaterializeAction>();
 
-  private _players: any = [];
   private _modal: HTMLElement = null;
   private _scroll: IScroll = null;
 
@@ -27,7 +26,7 @@ export class QuizStatusComponent extends Unsubscriber implements AfterContentIni
     super();
   }
 
-  public ngAfterContentInit() {
+  public ngAfterContentInit(): void {
     this._modal = this._elementRef
       .nativeElement
       .querySelector('#status');
@@ -57,14 +56,14 @@ export class QuizStatusComponent extends Unsubscriber implements AfterContentIni
     this.subscriptions.push(onCompleted);
   }
 
-  public ngOnDestroy() {
+  public ngOnDestroy(): void {
     if (this._scroll) {
       this._scroll.destroy();
       this._scroll = null;
     }
   }
 
-  public refreshScroll() {
+  public refreshScroll(): void {
     this._modal.style.display = 'initial';
     setTimeout(() => {
       this._modal.style.display = 'hidden';
@@ -72,70 +71,15 @@ export class QuizStatusComponent extends Unsubscriber implements AfterContentIni
     });
   }
 
-  public openModal() {
+  public openModal(): void {
     this.modalActions.emit({ action: 'modal', params: ['open'] });
   }
 
-  public closeModal() {
+  public closeModal(): void {
     this.modalActions.emit({ action: 'modal', params: ['close'] });
   }
 
-  public stopAllPlayers() {
-    for (let p of this._players) {
-      this.stopPlayback(p.player);
-    }
-  }
-
-  public stopPlayback(player: HTMLAudioElement) {
-    let p = this.getPlayer(player);
-
-    p.isPlaying = false;
-    player.currentTime = 0;
-    player.pause();
-  }
-
-  public startPlayback(player: HTMLAudioElement) {
-    let p = this.getPlayer(player);
-    this.stopAllPlayers();
-
-    p.isPlaying = true;
-    player.currentTime = 0;
-    player.play();
-  }
-
-  public togglePlayback(player: HTMLAudioElement) {
-    if (player.ended || player.paused) {
-      this.startPlayback(player);
-      return;
-    }
-
-    this.stopPlayback(player);
-  }
-
-  public isAudioPlaying(player: HTMLAudioElement) {
-    let p = this.getPlayer(player);
-
-    if (p.isPlaying) {
-      return true;
-    }
-
-    return false;
-  }
-
-  public getPlayer(player: HTMLAudioElement) {
-    for (let p of this._players) {
-      if (p.player === player) {
-        return p;
-      }
-    }
-
-    let entry = { player: player };
-    this._players.push(entry);
-
-    return entry;
-  }
-
-  get quizService() {
+  get quizService(): QuizService {
     return this._quizService;
   }
 

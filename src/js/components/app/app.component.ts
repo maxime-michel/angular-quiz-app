@@ -4,7 +4,7 @@ import { AnimationService, AnimationBuilder } from 'css-animator';
 import { Unsubscriber } from 'app/components';
 import { LocaleService, PlaylistService } from 'app/services';
 
-import template from './quiz-app.html';
+import template from './app.html';
 
 @Component({
   selector: 'quiz-app',
@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
     this._animator = animationService.builder();
   }
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     let loadingElem = document.getElementById('app-loading');
     let spinningElem = loadingElem.querySelector('.loader');
 

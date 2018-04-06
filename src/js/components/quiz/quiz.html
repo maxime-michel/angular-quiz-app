@@ -1,5 +1,5 @@
 <quiz-nav animates #animation="animates" (onGoHome)="onGoHome(animation)" (onRefresh)="onRefresh(animation)" (onClose)="onClose(animation)"></quiz-nav>
-<quiz-card *ngFor="let question of questions" [question]="question" hidden></quiz-card>
+<question-host *ngFor="let question of questions" [question]="question" hidden></question-host>
 <quiz-done></quiz-done>
 <quiz-status></quiz-status>
 <div id="questions-loading" *ngIf="!ready">
