@@ -30,6 +30,17 @@ config.buildTimestamp = new Date().valueOf();
 
 /*
 |--------------------------------------------------------------------------
+| App Base
+|--------------------------------------------------------------------------
+|
+| Set the base href for your deployed app in production.
+| This option does not have any impact in development mode.
+|
+*/
+config.baseHref = '/';
+
+/*
+|--------------------------------------------------------------------------
 | Source and Distribution Location
 |--------------------------------------------------------------------------
 |
