@@ -11,7 +11,7 @@ import { Playlist } from 'app/contracts';
 @Injectable()
 export class PlaylistService {
 
-  private _apiUrl = '/api/playlist/random';
+  private _apiUrl = 'api/playlist/random';
   private _mockUrl = 'assets/mock/playlist.json';
 
   constructor(private http: Http, private localeService: LocaleService) {

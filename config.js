@@ -27,6 +27,17 @@ var config = config || {};
 // Use the build timestamp to prevent browser caching of new versions
 config.buildTimestamp = new Date().valueOf();
 
+/*
+|--------------------------------------------------------------------------
+| App Base Href
+|--------------------------------------------------------------------------
+|
+| Set the <base> href attribute and the base for
+| the application itself (e.g. routing)
+|
+*/
+config.htmlBaseHref = '/angular-quiz-app/';
+config.appBaseHref = '/angular-quiz-app/';
 
 /*
 |--------------------------------------------------------------------------
@@ -38,7 +49,6 @@ config.buildTimestamp = new Date().valueOf();
 */
 config.src = './src';
 config.dist = './dist';
-
 
 /*
 |--------------------------------------------------------------------------
@@ -60,21 +70,23 @@ config.watch = ['src/**/*', 'index.html'];
 |
 */
 config.jspm = {
-  bundles: [{
-    options: [
-      'build',
-      'reflect-metadata + zone.js + app - app/mock/**/*',
-      config.dist + '/js/app.js',
-      '--minify',
-      '--skip-source-maps'
-    ],
-    devOptions: [
-      'build',
-      'reflect-metadata + zone.js + app/main.dev.ts',
-      config.dist + '/js/app.js',
-      '--no-mangle'
-    ]
-  }]
+  bundles: [
+    {
+      options: [
+        'build',
+        'reflect-metadata + zone.js + app - app/mock/**/*',
+        config.dist + '/js/app.js',
+        '--minify',
+        '--skip-source-maps'
+      ],
+      devOptions: [
+        'build',
+        'reflect-metadata + zone.js + app/main.dev.ts',
+        config.dist + '/js/app.js',
+        '--no-mangle'
+      ]
+    }
+  ]
 };
 
 /*
@@ -106,16 +118,13 @@ config.less = {
   name: 'app.css'
 };
 
-
-/*
-|--------------------------------------------------------------------------
+/* |--------------------------------------------------------------------------
 | Index File Configuration (Main Entry Point)
 |--------------------------------------------------------------------------
 |
 | Define the source and destination path, as well as the
 | file name.
-|
-*/
+| */
 config.index = {
   src: './index.html',
   dest: config.dist,
@@ -136,7 +145,6 @@ config.assets = {
   dest: config.dist + '/assets'
 };
 
-
 /*
 |--------------------------------------------------------------------------
 | Copy Configuration
@@ -145,24 +153,22 @@ config.assets = {
 | Define additional files that should be copied.
 |
 */
-config.copy = [{
-  base: './node_modules/materialize-css/fonts/roboto',
-  src: [
-    '/*'
-  ],
-  dest: config.dist + '/assets/fonts/roboto'
-}, {
-  base: './node_modules/flat-color-icons/svg',
-  src: [
-    '/*.svg'
-  ],
-  dest: config.dist + '/assets/icons'
-}, {
-  base: './node_modules/material-design-icons/iconfont',
-  src: [
-    '/*.eot', '/*.woff2', '/*.woff', '/*.ttf'
-  ],
-  dest: config.dist + '/assets/fonts/iconfont'
-}];
+config.copy = [
+  {
+    base: './node_modules/materialize-css/fonts/roboto',
+    src: ['/*'],
+    dest: config.dist + '/assets/fonts/roboto'
+  },
+  {
+    base: './node_modules/flat-color-icons/svg',
+    src: ['/*.svg'],
+    dest: config.dist + '/assets/icons'
+  },
+  {
+    base: './node_modules/material-design-icons/iconfont',
+    src: ['/*.eot', '/*.woff2', '/*.woff', '/*.ttf'],
+    dest: config.dist + '/assets/fonts/iconfont'
+  }
+];
 
 module.exports = config;

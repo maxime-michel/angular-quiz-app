@@ -13,6 +13,9 @@ import { MaterializeModule } from 'angular2-materialize';
 import { ContainerRefDirective } from 'app/directives';
 import { QUESTION_COMPONENTS, ANSWER_COMPONENTS } from 'app/components';
 
+const appBaseHref = '/* @echo config.appBaseHref */';
+const baseHref = appBaseHref.includes('config.appBaseHref') ? '/' : appBaseHref;
+
 import {
   AppComponent,
   LandingComponent,
@@ -46,7 +49,10 @@ import {
   ],
   entryComponents: QUESTION_COMPONENTS,
   providers: [
-    { provide: APP_BASE_HREF, useValue: '/' },
+    {
+      provide: APP_BASE_HREF,
+      useValue: baseHref
+    },
     { provide: ErrorHandler, useClass: AppErrorHandler }
   ],
   bootstrap: [

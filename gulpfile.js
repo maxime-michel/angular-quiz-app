@@ -18,6 +18,7 @@ var filter = require('gulp-filter');
 var sourcemaps = require('gulp-sourcemaps');
 var preprocess = require('gulp-preprocess');
 var rename = require('gulp-rename');
+var pp = require('preprocess');
 var argv = require('yargs').argv;
 var del = require('del');
 var exec = require('node-exec-promise').exec;
@@ -45,7 +46,8 @@ config.mode = config.env !== 'production' ? 'bundle' : 'build';
 config.build = true;
 
 // Determine environment before it is set for initialization
-process.env.NODE_ENV = config.env = argv._[0] === 'build' ? 'production' : 'development';
+process.env.NODE_ENV = config.env =
+  argv._[0] === 'build' ? 'production' : 'development';
 
 /*
 |--------------------------------------------------------------------------
@@ -76,9 +78,7 @@ process.env.NODE_ENV = config.env = argv._[0] === 'build' ? 'production' : 'deve
 */
 
 gulp.task('clean:all', function() {
-  return del([
-    path.normalize(path.join(config.dist, '**/*'))
-  ]);
+  return del([path.normalize(path.join(config.dist, '**/*'))]);
 });
 
 gulp.task('clean:scripts', function() {
@@ -89,9 +89,7 @@ gulp.task('clean:scripts', function() {
 });
 
 gulp.task('clean:vendor', function() {
-  return del([
-    path.normalize(path.join(config.vendor.dest, '**/*'))
-  ]);
+  return del([path.normalize(path.join(config.vendor.dest, '**/*'))]);
 });
 
 gulp.task('clean:styles', function() {
@@ -102,67 +100,83 @@ gulp.task('clean:styles', function() {
 });
 
 gulp.task('clean:index', function() {
-  return del([
-    path.normalize(path.join(config.dist, 'index.html'))
-  ]);
+  return del([path.normalize(path.join(config.dist, 'index.html'))]);
 });
 
 gulp.task('clean:html', function() {
-  return del([
-    path.normalize(path.join(config.dist, '**/*.html'))
-  ]);
+  return del([path.normalize(path.join(config.dist, '**/*.html'))]);
 });
 
 gulp.task('clean:assets', function() {
-  return del([
-    path.normalize(path.join(config.dist, 'assets/**/*'))
-  ]);
+  return del([path.normalize(path.join(config.dist, 'assets/**/*'))]);
 });
 
 gulp.task('jspm', function(done) {
   var bundles = [];
 
   config.jspm.bundles.forEach(function(bundle) {
-    var command = config.env !== 'production' ? bundle.devOptions : bundle.options;
+    var command =
+      config.env !== 'production' ? bundle.devOptions : bundle.options;
     command = command.slice(0);
     command.unshift('node_modules/.bin/jspm');
 
     bundles.push(exec(command.join(' ')));
   });
 
-  Promise.all(bundles)
-    .then(function(values) {
-      done();
-    }, function(error) {
+  Promise.all(bundles).then(
+    function(values) {
+      var file = path.join(config.dist, 'js/app.js');
+      var context = { config: config };
+      var options = { type: 'js' };
+
+      pp.preprocessFile(file, file, context, done, options);
+    },
+    function(error) {
       onError('Error bundling with jspm.', error);
-    });
+    }
+  );
 });
 
 gulp.task('less', function() {
-  return gulp.src(config.less.src)
-    .pipe(gulpif(config.env !== 'production', sourcemaps.init().on('error', onError)))
+  return gulp
+    .src(config.less.src)
+    .pipe(
+      gulpif(
+        config.env !== 'production',
+        sourcemaps.init().on('error', onError)
+      )
+    )
     .pipe(less().on('error', onError))
     .pipe(cleanCSS().on('error', onError))
     .pipe(rename(config.less.name).on('error', onError))
-    .pipe(gulpif(config.env !== 'production', sourcemaps.write('./').on('error', onError)))
+    .pipe(
+      gulpif(
+        config.env !== 'production',
+        sourcemaps.write('./').on('error', onError)
+      )
+    )
     .pipe(gulp.dest(config.less.dest))
     .on('error', onError);
 });
 
 gulp.task('copy:index', function() {
-  return gulp.src(config.index.src)
-    .pipe(preprocess({
-      context: {
-        config: config
-      }
-    }).on('error', onError))
+  return gulp
+    .src(config.index.src)
+    .pipe(
+      preprocess({
+        context: {
+          config: config
+        }
+      }).on('error', onError)
+    )
     .pipe(rename(config.index.name).on('error', onError))
     .pipe(gulp.dest(config.index.dest))
     .on('error', onError);
 });
 
 gulp.task('copy:assets', function() {
-  return gulp.src(config.assets.src)
+  return gulp
+    .src(config.assets.src)
     .pipe(gulp.dest(config.assets.dest))
     .on('error', onError);
 });
@@ -178,7 +192,8 @@ function createCopyTask(element, index) {
   });
 
   gulp.task(name, function() {
-    return gulp.src(sources)
+    return gulp
+      .src(sources)
       .pipe(gulp.dest(element.dest), { base: element.base })
       .on('error', onError);
   });
@@ -195,10 +210,13 @@ gulp.task('copy:originals', function(done) {
 });
 
 gulp.task('lint:ts', function() {
-  return gulp.src([config.tslint.src])
-    .pipe(tslint({
-      formatter: 'stylish'
-    }))
+  return gulp
+    .src([config.tslint.src])
+    .pipe(
+      tslint({
+        formatter: 'stylish'
+      })
+    )
     .pipe(tslint.report())
     .on('error', notifyError);
 });
@@ -212,10 +230,10 @@ gulp.task('lint:ts', function() {
 |
 */
 gulp.task('set-dev', function() {
-  return process.env.NODE_ENV = config.env = 'development';
+  return (process.env.NODE_ENV = config.env = 'development');
 });
 gulp.task('set-prod', function() {
-  return process.env.NODE_ENV = config.env = 'production';
+  return (process.env.NODE_ENV = config.env = 'production');
 });
 
 gulp.task('start', function(done) {
@@ -309,7 +327,6 @@ gulp.task('lint', function(done) {
   return gulpSequence(['lint:ts'])(done);
 });
 
-
 /*
 |--------------------------------------------------------------------------
 | Main Tasks
@@ -350,7 +367,14 @@ gulp.task('dev-build', function(done) {
 });
 
 gulp.task('watch-build', function(done) {
-  return gulpSequence('set-dev', 'start', 'lint', 'clean:default', ['tasks'], 'finish')(done);
+  return gulpSequence(
+    'set-dev',
+    'start',
+    'lint',
+    'clean:default',
+    ['tasks'],
+    'finish'
+  )(done);
 });
 
 gulp.task('watch', function() {
