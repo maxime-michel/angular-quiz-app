@@ -29,7 +29,7 @@ console.log('');
 console.log(`Server environment is ${process.env.NODE_ENV}`);
 console.log(`Server public dir set to ${config.publicDir}`);
 
-var basePath = process.env.APP_BASE_PATH ? process.env.APP_BASE_PATH : '/';
+var basePath = process.env.API_BASE_PATH ? process.env.API_BASE_PATH : '/';
 
 // Compress responses
 app.use(compress());

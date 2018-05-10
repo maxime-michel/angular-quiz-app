@@ -36,8 +36,8 @@ config.buildTimestamp = new Date().valueOf();
 | the application itself (e.g. routing)
 |
 */
-config.htmlBaseHref = '/angular-quiz-app/';
-config.appBaseHref = '/angular-quiz-app/';
+config.htmlBaseHref = '/';
+config.appBaseHref = '/';
 
 /*
 |--------------------------------------------------------------------------
