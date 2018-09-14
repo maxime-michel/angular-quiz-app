@@ -11,7 +11,7 @@ function createErrRes(err) {
   let error = isObject(err) ? err : { message: err };
   let statusCode = err && err.statusCode ? err.statusCode : 500;
 
-  error.name = error.name || 'HueapiError';
+  error.name = error.name || 'ApiError';
   error.message = error.message || 'Whoops, something went wrong. That\'s all we know :(';
   error.statusCode = error.statusCode || statusCode;
 
