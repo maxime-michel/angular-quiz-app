@@ -84,7 +84,7 @@
       "@angular/platform-browser-dynamic": "npm:@angular/platform-browser-dynamic@^5.0.2",
       "@angular/router": "npm:@angular/router@^5.0.2",
       "angular2-materialize": "npm:angular2-materialize@^15.0.1",
-      "css-animator": "npm:css-animator@^2.0.1",
+      "css-animator": "npm:css-animator@^2.3.1",
       "hammerjs": "npm:hammerjs@^2.0.8",
       "iscroll": "npm:iscroll@^5.2.0",
       "jquery": "npm:jquery@^2.2.4",
@@ -99,10 +99,10 @@
       "plugin-babel": "npm:systemjs-plugin-babel@^0.0.21"
     },
     "peerDependencies": {
-      "@angular/common": "npm:@angular/common@5.2.9",
-      "@angular/compiler": "npm:@angular/compiler@5.2.9",
-      "@angular/core": "npm:@angular/core@5.2.9",
-      "@angular/platform-browser": "npm:@angular/platform-browser@5.2.9",
+      "@angular/common": "npm:@angular/common@5.2.11",
+      "@angular/compiler": "npm:@angular/compiler@5.2.11",
+      "@angular/core": "npm:@angular/core@5.2.11",
+      "@angular/platform-browser": "npm:@angular/platform-browser@5.2.11",
       "assert": "npm:jspm-nodelibs-assert@^0.2.0",
       "buffer": "npm:jspm-nodelibs-buffer@^0.2.0",
       "child_process": "npm:jspm-nodelibs-child_process@^0.2.0",
@@ -146,17 +146,17 @@
       "npm:jquery@2.2.4": {
         "format": "amd"
       },
-      "npm:pbkdf2@3.0.14": {
+      "npm:pbkdf2@3.0.16": {
         "main": "browser.js"
       },
       "npm:reflect-metadata@0.1.12": {
         "jspmNodeConversion": true,
         "map": {}
       },
-      "npm:safe-buffer@5.1.1": {
+      "npm:safe-buffer@5.1.2": {
         "browser": "index.js"
       },
-      "npm:tslib@1.9.0": {
+      "npm:tslib@1.9.3": {
         "format": "cjs",
         "meta": {
           "tslib.js": {
@@ -164,7 +164,7 @@
           }
         }
       },
-      "npm:typescript@2.8.1": {
+      "npm:typescript@2.9.2": {
         "browser": {},
         "map": {
           "buffer": "@empty",
