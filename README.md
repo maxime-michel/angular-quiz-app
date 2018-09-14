@@ -13,12 +13,9 @@ $ npm start
 
 # Live Example
 
-[https://hueapp.herokuapp.com/](https://hueapp.herokuapp.com/)
+See this project in action:
 
-> Since the app is hosted on a free [Heroku](https://www.heroku.com/) instance, it may need some time to boot up.
-
-*Fun fact:* The app is named "hue", because the course at University, where this project was born,
-was called "Hypermedia User Experience Engineering".
+[https://fabiandev.io/angular-quiz-app/](https://fabiandev.io/angular-quiz-app/)
 
 # Credits
 
