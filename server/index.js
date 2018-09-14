@@ -35,7 +35,11 @@ var basePath = process.env.API_BASE_PATH ? process.env.API_BASE_PATH : '/';
 app.use(compress());
 
 // Request middleware
-app.use(require('./middleware/httpsRedirect'));
+
+if (config.httpsRedirect) {
+  app.use(require('./middleware/httpsRedirect'));
+}
+
 app.use(require('./middleware/isFile'));
 app.use(express.static(path.join(__dirname, config.publicDir)));
 

@@ -1,3 +1,4 @@
 module.exports = {
-  publicDir: '../dist'
+  publicDir: '../dist',
+  httpsRedirect: true
 };
