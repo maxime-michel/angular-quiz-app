@@ -1,8 +1,5 @@
-import Rx from 'rxjs/Observable';
-import 'rxjs/add/operator/delay';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/first';
-import 'rxjs/add/operator/map';
+import { Observable, of } from 'rxjs';
+import { delay, first, map } from 'rxjs/operators';
 
 import { Injectable, EventEmitter, isDevMode } from '@angular/core';
 
@@ -33,7 +30,7 @@ export class QuizService {
 
   }
 
-  public init(numberOfQuestions: number): Rx.Observable<Question[]> {
+  public init(numberOfQuestions: number): Observable<Question[]> {
     this._numberOfQuestions = numberOfQuestions;
 
     if (isDevMode()) {
@@ -63,7 +60,7 @@ export class QuizService {
     this._questions = [];
 
     this.init(this._numberOfQuestions)
-      .first()
+      .pipe(first())
       .subscribe((questions: Question[]) => {
         scrollTo(document.body, 0, this._scrollDuration).then(() => {
           this.onRefresh.emit();
@@ -121,27 +118,30 @@ export class QuizService {
     return question.correctAnswer;
   }
 
-  private loadProductionData(): Rx.Observable<Question[]> {
-    return this.playlistService.getPlaylist()
-      .map((playlist: Playlist) => this.extractTracks(playlist))
-      .map((tracks: Track[]) => this.extractRandom(tracks))
-      .map((tracks: Track[]) => this.buildQuestions(tracks));
+  private loadProductionData(): Observable<Question[]> {
+    return this.playlistService.getPlaylist().pipe(
+        map((playlist: Playlist) => this.extractTracks(playlist)),
+        map((tracks: Track[]) => this.extractRandom(tracks)),
+        map((tracks: Track[]) => this.buildQuestions(tracks))
+      );
   }
 
-  private loadExistingData(data: Playlist, delay = 1000): Rx.Observable<Question[]> {
-    return Rx.Observable.of(data)
-      .delay(delay)
-      .map((playlist: Playlist) => this.extractTracks(playlist))
-      .map((tracks: Track[]) => this.extractRandom(tracks))
-      .map((tracks: Track[]) => this.buildQuestions(tracks));
+  private loadExistingData(data: Playlist, wait = 1000): Observable<Question[]> {
+    return of(data).pipe(
+        delay(wait),
+        map((playlist: Playlist) => this.extractTracks(playlist)),
+        map((tracks: Track[]) => this.extractRandom(tracks)),
+        map((tracks: Track[]) => this.buildQuestions(tracks))
+      );
   }
 
-  private loadMockData(delay = 500): Rx.Observable<Question[]> {
-    return this.playlistService.getMockPlaylist()
-      .delay(delay)
-      .map((playlist: Playlist) => this.extractTracks(playlist))
-      .map((tracks: Track[]) => this.extractRandom(tracks))
-      .map((tracks: Track[]) => this.buildQuestions(tracks));
+  private loadMockData(wait = 500): Observable<Question[]> {
+    return this.playlistService.getMockPlaylist().pipe(
+        delay(wait),
+        map((playlist: Playlist) => this.extractTracks(playlist)),
+        map((tracks: Track[]) => this.extractRandom(tracks)),
+        map((tracks: Track[]) => this.buildQuestions(tracks)),
+      );
   }
 
   private calculateProgress(): number {

@@ -1,8 +1,3 @@
-import Rx from 'rxjs/Observable';
-import 'rxjs/add/observable/interval';
-import 'rxjs/add/operator/timeInterval';
-import 'rxjs/add/operator/take';
-
 import { Component, AfterViewInit, Input, ViewChild, ElementRef, ComponentFactoryResolver } from '@angular/core';
 
 import { AnimationService, AnimationBuilder } from 'css-animator';

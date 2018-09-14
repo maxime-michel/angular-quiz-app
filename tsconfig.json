@@ -8,60 +8,60 @@
 				"src/js/*/index"
 			],
 			"@angular/common": [
-				"jspm_packages/npm/@angular/common@5.2.11"
+				"jspm_packages/npm/@angular/common@6.1.7"
 			],
 			"@angular/common/*": [
-				"jspm_packages/npm/@angular/common@5.2.11/*",
-				"jspm_packages/npm/@angular/common@5.2.11/*/index"
+				"jspm_packages/npm/@angular/common@6.1.7/*",
+				"jspm_packages/npm/@angular/common@6.1.7/*/index"
 			],
 			"@angular/compiler": [
-				"jspm_packages/npm/@angular/compiler@5.2.11"
+				"jspm_packages/npm/@angular/compiler@6.1.7"
 			],
 			"@angular/compiler/*": [
-				"jspm_packages/npm/@angular/compiler@5.2.11/*",
-				"jspm_packages/npm/@angular/compiler@5.2.11/*/index"
+				"jspm_packages/npm/@angular/compiler@6.1.7/*",
+				"jspm_packages/npm/@angular/compiler@6.1.7/*/index"
 			],
 			"@angular/core": [
-				"jspm_packages/npm/@angular/core@5.2.11"
+				"jspm_packages/npm/@angular/core@6.1.7"
 			],
 			"@angular/core/*": [
-				"jspm_packages/npm/@angular/core@5.2.11/*",
-				"jspm_packages/npm/@angular/core@5.2.11/*/index"
+				"jspm_packages/npm/@angular/core@6.1.7/*",
+				"jspm_packages/npm/@angular/core@6.1.7/*/index"
 			],
 			"@angular/forms": [
-				"jspm_packages/npm/@angular/forms@5.2.11"
+				"jspm_packages/npm/@angular/forms@6.1.7"
 			],
 			"@angular/forms/*": [
-				"jspm_packages/npm/@angular/forms@5.2.11/*",
-				"jspm_packages/npm/@angular/forms@5.2.11/*/index"
+				"jspm_packages/npm/@angular/forms@6.1.7/*",
+				"jspm_packages/npm/@angular/forms@6.1.7/*/index"
 			],
 			"@angular/http": [
-				"jspm_packages/npm/@angular/http@5.2.11"
+				"jspm_packages/npm/@angular/http@6.1.7"
 			],
 			"@angular/http/*": [
-				"jspm_packages/npm/@angular/http@5.2.11/*",
-				"jspm_packages/npm/@angular/http@5.2.11/*/index"
+				"jspm_packages/npm/@angular/http@6.1.7/*",
+				"jspm_packages/npm/@angular/http@6.1.7/*/index"
 			],
 			"@angular/platform-browser": [
-				"jspm_packages/npm/@angular/platform-browser@5.2.11"
+				"jspm_packages/npm/@angular/platform-browser@6.1.7"
 			],
 			"@angular/platform-browser/*": [
-				"jspm_packages/npm/@angular/platform-browser@5.2.11/*",
-				"jspm_packages/npm/@angular/platform-browser@5.2.11/*/index"
+				"jspm_packages/npm/@angular/platform-browser@6.1.7/*",
+				"jspm_packages/npm/@angular/platform-browser@6.1.7/*/index"
 			],
 			"@angular/platform-browser-dynamic": [
-				"jspm_packages/npm/@angular/platform-browser-dynamic@5.2.11"
+				"jspm_packages/npm/@angular/platform-browser-dynamic@6.1.7"
 			],
 			"@angular/platform-browser-dynamic/*": [
-				"jspm_packages/npm/@angular/platform-browser-dynamic@5.2.11/*",
-				"jspm_packages/npm/@angular/platform-browser-dynamic@5.2.11/*/index"
+				"jspm_packages/npm/@angular/platform-browser-dynamic@6.1.7/*",
+				"jspm_packages/npm/@angular/platform-browser-dynamic@6.1.7/*/index"
 			],
 			"@angular/router": [
-				"jspm_packages/npm/@angular/router@5.2.11"
+				"jspm_packages/npm/@angular/router@6.1.7"
 			],
 			"@angular/router/*": [
-				"jspm_packages/npm/@angular/router@5.2.11/*",
-				"jspm_packages/npm/@angular/router@5.2.11/*/index"
+				"jspm_packages/npm/@angular/router@6.1.7/*",
+				"jspm_packages/npm/@angular/router@6.1.7/*/index"
 			],
 			"angular2-materialize": [
 				"jspm_packages/npm/angular2-materialize@15.1.10"
@@ -204,11 +204,11 @@
 				"jspm_packages/npm/reflect-metadata@0.1.12/*/index"
 			],
 			"rxjs": [
-				"jspm_packages/npm/rxjs@5.5.12"
+				"jspm_packages/npm/rxjs@6.3.2"
 			],
 			"rxjs/*": [
-				"jspm_packages/npm/rxjs@5.5.12/*",
-				"jspm_packages/npm/rxjs@5.5.12/*/index"
+				"jspm_packages/npm/rxjs@6.3.2/*",
+				"jspm_packages/npm/rxjs@6.3.2/*/index"
 			],
 			"stream": [
 				"jspm_packages/npm/jspm-nodelibs-stream@0.2.1"
@@ -239,11 +239,11 @@
 				"jspm_packages/npm/jspm-nodelibs-tty@0.2.1/*/index"
 			],
 			"typescript": [
-				"jspm_packages/npm/typescript@2.9.2"
+				"jspm_packages/npm/typescript@3.0.3"
 			],
 			"typescript/*": [
-				"jspm_packages/npm/typescript@2.9.2/*",
-				"jspm_packages/npm/typescript@2.9.2/*/index"
+				"jspm_packages/npm/typescript@3.0.3/*",
+				"jspm_packages/npm/typescript@3.0.3/*/index"
 			],
 			"url": [
 				"jspm_packages/npm/jspm-nodelibs-url@0.2.1"
@@ -295,25 +295,60 @@
 				"jspm_packages/npm/core-js@2.5.7/*/index"
 			],
 			"plugin-babel": [
-				"jspm_packages/npm/systemjs-plugin-babel@0.0.21"
+				"jspm_packages/npm/systemjs-plugin-babel@0.0.25"
 			],
 			"plugin-babel/*": [
-				"jspm_packages/npm/systemjs-plugin-babel@0.0.21/*",
-				"jspm_packages/npm/systemjs-plugin-babel@0.0.21/*/index"
+				"jspm_packages/npm/systemjs-plugin-babel@0.0.25/*",
+				"jspm_packages/npm/systemjs-plugin-babel@0.0.25/*/index"
 			],
 			"text": [
-				"jspm_packages/github/systemjs/plugin-text@0.0.9"
+				"jspm_packages/github/systemjs/plugin-text@0.0.11"
 			],
 			"text/*": [
-				"jspm_packages/github/systemjs/plugin-text@0.0.9/*",
-				"jspm_packages/github/systemjs/plugin-text@0.0.9/*/index"
+				"jspm_packages/github/systemjs/plugin-text@0.0.11/*",
+				"jspm_packages/github/systemjs/plugin-text@0.0.11/*/index"
 			],
 			"ts": [
-				"jspm_packages/github/frankwallis/plugin-typescript@7.1.1"
+				"jspm_packages/github/frankwallis/plugin-typescript@9.0.0"
 			],
 			"ts/*": [
-				"jspm_packages/github/frankwallis/plugin-typescript@7.1.1/*",
-				"jspm_packages/github/frankwallis/plugin-typescript@7.1.1/*/index"
+				"jspm_packages/github/frankwallis/plugin-typescript@9.0.0/*",
+				"jspm_packages/github/frankwallis/plugin-typescript@9.0.0/*/index"
+			],
+			"readline": [
+				"jspm_packages/npm/jspm-nodelibs-readline@0.2.1"
+			],
+			"readline/*": [
+				"jspm_packages/npm/jspm-nodelibs-readline@0.2.1/*",
+				"jspm_packages/npm/jspm-nodelibs-readline@0.2.1/*/index"
+			],
+			"babel-runtime": [
+				"jspm_packages/npm/babel-runtime@6.26.0"
+			],
+			"babel-runtime/*": [
+				"jspm_packages/npm/babel-runtime@6.26.0/*",
+				"jspm_packages/npm/babel-runtime@6.26.0/*/index"
+			],
+			"systemjs-plugin-babel": [
+				"jspm_packages/npm/systemjs-plugin-babel@0.0.25"
+			],
+			"systemjs-plugin-babel/*": [
+				"jspm_packages/npm/systemjs-plugin-babel@0.0.25/*",
+				"jspm_packages/npm/systemjs-plugin-babel@0.0.25/*/index"
+			],
+			"frankwallis/plugin-typescript": [
+				"jspm_packages/github/frankwallis/plugin-typescript@9.0.0"
+			],
+			"frankwallis/plugin-typescript/*": [
+				"jspm_packages/github/frankwallis/plugin-typescript@9.0.0/*",
+				"jspm_packages/github/frankwallis/plugin-typescript@9.0.0/*/index"
+			],
+			"systemjs/plugin-text": [
+				"jspm_packages/github/systemjs/plugin-text@0.0.11"
+			],
+			"systemjs/plugin-text/*": [
+				"jspm_packages/github/systemjs/plugin-text@0.0.11/*",
+				"jspm_packages/github/systemjs/plugin-text@0.0.11/*/index"
 			]
 		}
 	}

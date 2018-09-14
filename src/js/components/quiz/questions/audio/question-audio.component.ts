@@ -1,7 +1,5 @@
-import Rx from 'rxjs/Observable';
-import 'rxjs/add/observable/interval';
-import 'rxjs/add/operator/timeInterval';
-import 'rxjs/add/operator/take';
+import { interval } from 'rxjs';
+import { timeInterval, take } from 'rxjs/operators';
 
 import { Component } from '@angular/core';
 
@@ -63,10 +61,11 @@ export class QuestionAudioComponent extends GenericQuestion {
     this._player = player;
     let countdown = this._countdown - 1;
 
-    Rx.Observable
-      .interval(1000)
-      .timeInterval()
-      .take(this._countdown)
+    interval(1000)
+      .pipe(
+        timeInterval(),
+        take(this._countdown)
+      )
       .subscribe((next) => {
         this._countdown = countdown - next.value;
       }, (error) => {
