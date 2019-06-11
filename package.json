@@ -62,7 +62,7 @@
     "gulp-sequence": "^0.4.5",
     "gulp-sourcemaps": "^2.6.0",
     "gulp-tslint": "^8.1.1",
-    "jspm": "^0.17.0-beta.41",
+    "jspm": "^0.17.0-beta.49",
     "jspm-tsc-update": "^0.2.0-beta.2",
     "less": "^2.7.1",
     "lodash.assign": "^4.0.6",
@@ -79,10 +79,10 @@
     },
     "configFile": "system.config.js",
     "dependencies": {
-      "@angular/forms": "npm:@angular/forms@^6.1.7",
-      "@angular/http": "npm:@angular/http@^6.1.7",
-      "@angular/platform-browser-dynamic": "npm:@angular/platform-browser-dynamic@^6.1.7",
-      "@angular/router": "npm:@angular/router@^6.1.7",
+      "@angular/forms": "npm:@angular/forms@^8.0.0",
+      "@angular/http": "npm:@angular/http@^7.2.15",
+      "@angular/platform-browser-dynamic": "npm:@angular/platform-browser-dynamic@^8.0.0",
+      "@angular/router": "npm:@angular/router@^8.0.0",
       "angular2-materialize": "npm:angular2-materialize@^15.0.1",
       "css-animator": "npm:css-animator@^2.3.1",
       "hammerjs": "npm:hammerjs@^2.0.8",
@@ -100,10 +100,10 @@
       "typescript": "npm:typescript@^3.0.3"
     },
     "peerDependencies": {
-      "@angular/common": "npm:@angular/common@6.1.7",
-      "@angular/compiler": "npm:@angular/compiler@6.1.7",
-      "@angular/core": "npm:@angular/core@6.1.7",
-      "@angular/platform-browser": "npm:@angular/platform-browser@6.1.7",
+      "@angular/common": "npm:@angular/common@^8.0.0",
+      "@angular/compiler": "npm:@angular/compiler@^8.0.0",
+      "@angular/core": "npm:@angular/core@8.0.0",
+      "@angular/platform-browser": "npm:@angular/platform-browser@^8.0.0",
       "assert": "npm:jspm-nodelibs-assert@^0.2.0",
       "buffer": "npm:jspm-nodelibs-buffer@^0.2.0",
       "child_process": "npm:jspm-nodelibs-child_process@^0.2.0",
@@ -119,7 +119,7 @@
       "path": "npm:jspm-nodelibs-path@^0.2.0",
       "process": "npm:jspm-nodelibs-process@^0.2.0",
       "readline": "npm:jspm-nodelibs-readline@^0.2.0",
-      "rxjs": "npm:rxjs@^6.0.0",
+      "rxjs": "npm:rxjs@^6.4.0",
       "stream": "npm:jspm-nodelibs-stream@^0.2.0",
       "string_decoder": "npm:jspm-nodelibs-string_decoder@^0.2.0",
       "timers": "npm:jspm-nodelibs-timers@^0.2.0",
@@ -128,7 +128,7 @@
       "util": "npm:jspm-nodelibs-util@^0.2.0",
       "vm": "npm:jspm-nodelibs-vm@^0.2.0",
       "zlib": "npm:jspm-nodelibs-zlib@^0.2.0",
-      "zone.js": "npm:zone.js@~0.8.26"
+      "zone.js": "npm:zone.js@~0.9.1"
     },
     "overrides": {
       "npm:browserify-zlib@0.1.4": {
@@ -148,17 +148,17 @@
       "npm:jquery@2.2.4": {
         "format": "amd"
       },
-      "npm:pbkdf2@3.0.16": {
+      "npm:pbkdf2@3.0.17": {
         "main": "browser.js"
       },
-      "npm:reflect-metadata@0.1.12": {
+      "npm:reflect-metadata@0.1.13": {
         "jspmNodeConversion": true,
         "map": {}
       },
       "npm:safe-buffer@5.1.2": {
         "browser": "index.js"
       },
-      "npm:tslib@1.9.3": {
+      "npm:tslib@1.10.0": {
         "format": "cjs",
         "meta": {
           "tslib.js": {
