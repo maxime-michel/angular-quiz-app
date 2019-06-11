@@ -10,7 +10,7 @@ SystemJS.config({
   devConfig: {
     "map": {
       "ts-runtime": "npm:babel-runtime@6.26.0",
-      "core-js": "npm:core-js@2.6.9",
+      "core-js": "npm:core-js@3.1.3",
       "plugin-babel": "npm:systemjs-plugin-babel@0.0.25",
       "text": "github:systemjs/plugin-text@0.0.11",
       "ts": "github:frankwallis/plugin-typescript@9.0.0",
@@ -73,6 +73,9 @@ SystemJS.config({
         }
       }
     }
+  },
+  map: {
+    "babel-runtime": "npm:babel-runtime@6.26.0"
   }
 });
 
