@@ -8,7 +8,6 @@
 |
 */
 var gulp = require('gulp');
-var gulpSequence = require('gulp-sequence');
 var gulpif = require('gulp-if');
 var tslint = require('gulp-tslint');
 var less = require('gulp-less');
@@ -205,9 +204,7 @@ clone(config.copy).forEach(function(element, index) {
   createCopyTask(element, index);
 });
 
-gulp.task('copy:originals', function(done) {
-  return gulpSequence(clone(copyTasks))(done);
-});
+gulp.task('copy:originals', gulp.series(...clone(copyTasks)));
 
 gulp.task('lint:ts', function() {
   return gulp
@@ -230,10 +227,10 @@ gulp.task('lint:ts', function() {
 |
 */
 gulp.task('set-dev', function() {
-  return (process.env.NODE_ENV = config.env = 'development');
+  return Promise.resolve(process.env.NODE_ENV = config.env = 'development');
 });
-gulp.task('set-prod', function() {
-  return (process.env.NODE_ENV = config.env = 'production');
+gulp.task('set-prod', function(done) {
+  return Promise.resolve(process.env.NODE_ENV = config.env = 'production');
 });
 
 gulp.task('start', function(done) {
@@ -307,25 +304,16 @@ function clone(obj) {
 |     Runs all required typescript tasks.
 |
 */
-gulp.task('master', function(done) {
-  return gulpSequence('lint', 'clean:all', ['tasks', 'jspm'])(done);
-});
 
-gulp.task('tasks', function(done) {
-  return gulpSequence(['copy', 'less'])(done);
-});
+gulp.task('copy', gulp.series('copy:index', 'copy:assets', 'copy:originals'));
 
-gulp.task('copy', function(done) {
-  return gulpSequence(['copy:index', 'copy:assets', 'copy:originals'])(done);
-});
+gulp.task('tasks', gulp.series('copy', 'less'));
 
-gulp.task('clean:default', function(done) {
-  return gulpSequence(['clean:scripts', 'clean:styles', 'clean:index'])(done);
-});
+gulp.task('clean:default', gulp.series('clean:scripts', 'clean:styles', 'clean:index'));
 
-gulp.task('lint', function(done) {
-  return gulpSequence(['lint:ts'])(done);
-});
+gulp.task('lint', gulp.series('lint:ts'));
+
+gulp.task('master', gulp.series('lint', 'clean:all', gulp.parallel('tasks', 'jspm')));
 
 /*
 |--------------------------------------------------------------------------
@@ -356,26 +344,12 @@ gulp.task('lint', function(done) {
 |     locally.
 |
 */
-gulp.task('default', ['build']);
 
-gulp.task('build', function(done) {
-  return gulpSequence('set-prod', 'start', 'master', 'finish')(done);
-});
+gulp.task('build', gulp.series('set-prod', 'start', 'master', 'finish'));
 
-gulp.task('dev-build', function(done) {
-  return gulpSequence('set-dev', 'start', 'master', 'finish')(done);
-});
+gulp.task('dev-build', gulp.series('set-dev', 'start', 'master', 'finish'));
 
-gulp.task('watch-build', function(done) {
-  return gulpSequence(
-    'set-dev',
-    'start',
-    'lint',
-    'clean:default',
-    ['tasks'],
-    'finish'
-  )(done);
-});
+gulp.task('watch-build', gulp.series('set-dev', 'start', 'lint', 'clean:default', gulp.parallel('tasks'), 'finish'));
 
 gulp.task('watch', function() {
   gulpSequence('watch-build')(function() {
@@ -387,3 +361,5 @@ gulp.task('serve', function(done) {
   log(colors.blue('Use "npm start [dev]" instead.'));
   done();
 });
+
+gulp.task('default', gulp.series('build'));
