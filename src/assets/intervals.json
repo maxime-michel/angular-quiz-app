@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Demi-ton",
+    "id": "2m",
+    "difficulty": 0
+  },
+  {
+    "name": "Ton",
+    "id": "2M",
+    "difficulty": 0
+  },
+  {
+    "name": "Tierce mineure",
+    "id": "3m",
+    "difficulty": 0
+  },
+  {
+    "name": "Tierce majeure",
+    "id": "3M",
+    "difficulty": 0
+  },
+  {
+    "name": "Quarte",
+    "id": "4P",
+    "difficulty": 1
+  },
+  {
+    "name": "Triton",
+    "id": "4A",
+    "difficulty": 3
+  },
+  {
+    "name": "Quinte",
+    "id": "5P",
+    "difficulty": 1
+  },
+  {
+    "name": "Sixième mineure",
+    "id": "6m",
+    "difficulty": 2
+  },
+  {
+    "name": "Sixième majeure",
+    "id": "6M",
+    "difficulty": 2
+  },
+  {
+    "name": "Septième mineure",
+    "id": "7m",
+    "difficulty": 2
+  },
+  {
+    "name": "Septième majeure",
+    "id": "7M",
+    "difficulty": 2
+  },
+  {
+    "name": "Octave",
+    "id": "8P",
+    "difficulty": 1
+  }
+]

@@ -33,10 +33,6 @@ export class QuizService {
   public init(numberOfQuestions: number): Observable<Question[]> {
     this._numberOfQuestions = numberOfQuestions;
 
-    if (isDevMode()) {
-      return this.loadMockData();
-    }
-
     return this.loadProductionData();
   }
 
@@ -119,7 +115,7 @@ export class QuizService {
   }
 
   private loadProductionData(): Observable<Question[]> {
-    return this.playlistService.getPlaylist().pipe(
+    return this.playlistService.getIntervals().pipe(
         map((playlist: Playlist) => this.extractTracks(playlist)),
         map((tracks: Track[]) => this.extractRandom(tracks)),
         map((tracks: Track[]) => this.buildQuestions(tracks))

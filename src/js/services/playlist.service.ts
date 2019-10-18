@@ -12,6 +12,7 @@ export class PlaylistService {
 
   private _apiUrl = 'api/playlist/random';
   private _mockUrl = 'assets/mock/playlist.json';
+  private _intervalsUrl = 'assets/intervals.json';
 
   constructor(private http: Http, private localeService: LocaleService) {
 
@@ -32,6 +33,16 @@ export class PlaylistService {
     if (this.localeService.locale && this.localeService.locale.value) {
       requestUrl += '?country=' + this.localeService.locale.value;
     }
+
+    return this.http.get(requestUrl).pipe(
+        map(this.extractData),
+        catchError(this.handleError)
+      );
+  }
+
+  // TODO: this ideally should be in another class
+  public getIntervals(): Observable<Playlist> {
+    let requestUrl = this._intervalsUrl;
 
     return this.http.get(requestUrl).pipe(
         map(this.extractData),
