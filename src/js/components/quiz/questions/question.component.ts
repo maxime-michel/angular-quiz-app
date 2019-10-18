@@ -23,6 +23,7 @@ export class QuestionComponent extends Unsubscriber implements AfterViewInit {
   private _nextTimeout: any = null;
   private _animator: AnimationBuilder;
   private _active: boolean = false;
+  private _progress: number;
 
   private component: GenericQuestion;
 
@@ -141,6 +142,7 @@ export class QuestionComponent extends Unsubscriber implements AfterViewInit {
 
     this._active = true;
     this._animator.setType('fadeInRight').setDelay(200);
+    this._progress = this._quizService.progress();
 
     if (this.question.id === 1) {
       this._animator.setType('fadeInUp');
@@ -176,6 +178,10 @@ export class QuestionComponent extends Unsubscriber implements AfterViewInit {
     component.init();
 
     this.component = component;
+  }
+
+  public get progress(): number {
+    return this._progress;
   }
 
 }

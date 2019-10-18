@@ -19,7 +19,6 @@ import mainStyle from './quiz-done.css';
   }
 })
 export class QuizDoneComponent extends Unsubscriber {
-
   private _animator: AnimationBuilder;
   private _hidden: boolean = true;
 
@@ -57,6 +56,10 @@ export class QuizDoneComponent extends Unsubscriber {
       .setDelay(100)
       .setDuration(600)
       .hide(this._elementRef.nativeElement);
+  }
+
+  public refresh(): void {
+    this._quizService.refresh();
   }
 
   private subscribe(): void {
