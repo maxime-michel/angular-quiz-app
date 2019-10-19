@@ -1,0 +1,22 @@
+<div class="col s12 m8 offset-m2 l6 offset-l3">
+  <div class="card-panel grey lighten-5 z-depth-1">
+    <div class="row valign-wrapper">
+      <div class="col s2">
+        <i class="material-icons circle blue white-text">audiotrack</i>
+      </div>
+      <div class="col s10 truncate question-title">
+        {{ title }}
+        <br>
+        <div class="song-preview">
+          <button #button (click)="playInterval(button)" class="btn waves-effect waves-light" type="submit" name="action">Play</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<answer-choice-interval [question]="question" (onAnswerChange)="answerChanged($event)">
+
+<ng-template #statusTemplate>
+  <i class="material-icons circle blue play-button waves-effect waves-light" (click)="playInterval(button)">play_arrow</i>
+</ng-template>

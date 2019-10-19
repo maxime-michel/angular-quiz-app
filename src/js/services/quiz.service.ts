@@ -1,12 +1,12 @@
 import { Observable, of } from 'rxjs';
-import { delay, first, map } from 'rxjs/operators';
+import { delay, first, map, filter } from 'rxjs/operators';
 
 import { Injectable, EventEmitter, isDevMode } from '@angular/core';
 
 import { shuffle, scrollTo } from 'app/helpers';
 import { PlaylistService } from './playlist.service';
 
-import { Playlist, Track, Question, QuestionType } from 'app/contracts';
+import { Playlist, Track, Question, QuestionType, Interval } from 'app/contracts';
 
 @Injectable()
 export class QuizService {
@@ -23,6 +23,7 @@ export class QuizService {
   private _progress: number;
   private _playlist: Playlist;
   private _tracks: Track[];
+  private _intervals: Interval[];
   private _random: Track[];
   private _questions: Question[];
 
@@ -52,6 +53,7 @@ export class QuizService {
     this._progress = 0;
     this._playlist = null;
     this._tracks = [];
+    this._intervals = [];
     this._random = [];
     this._questions = [];
 
@@ -116,9 +118,8 @@ export class QuizService {
 
   private loadProductionData(): Observable<Question[]> {
     return this.playlistService.getIntervals().pipe(
-        map((playlist: Playlist) => this.extractTracks(playlist)),
-        map((tracks: Track[]) => this.extractRandom(tracks)),
-        map((tracks: Track[]) => this.buildQuestions(tracks))
+        filter((interval: Interval) => interval.difficulty === 0), // TODO: read that from ctx
+        map((intervals: Interval[]) => this.buildQuestions(intervals))
       );
   }
 
@@ -190,6 +191,39 @@ export class QuizService {
     return this._questions;
   }
 
+  private buildQuestions(intervals: Interval[]) {
+    this._intervals = intervals;
+    let questions: Question[] = [];
+    let count = 0;
+
+    for (let interval of intervals) {
+      count++;
+
+      let question: Question = {
+        id: -1,
+        type: QuestionType.Interval,
+        interval: interval,
+        answer: undefined,
+        correctAnswer: undefined,
+        answered: false,
+        wasCorrect: false
+      };
+
+      questions.push(question);
+    }
+
+    count = 0;
+    this._questions = shuffle(questions).map((question) => {
+      question.id = ++count;
+      return question;
+    });
+
+    questions[0].id = 1;
+    this._questions.unshift(questions[0]);
+
+    return this._questions;
+  }
+
   private extractTracks(playlist: Playlist) {
     let tracks: Track[] = [];
 
@@ -248,6 +282,10 @@ export class QuizService {
 
   get tracks(): Track[] {
     return this._tracks;
+  }
+
+  get intervals(): Interval[] {
+    return this._intervals;
   }
 
 }

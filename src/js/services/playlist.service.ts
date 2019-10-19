@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 
 import LocaleService from './locale.service';
-import { Playlist } from 'app/contracts';
+import { Playlist, Interval } from 'app/contracts';
 
 @Injectable()
 export class PlaylistService {
@@ -41,7 +41,7 @@ export class PlaylistService {
   }
 
   // TODO: this ideally should be in another class
-  public getIntervals(): Observable<Playlist> {
+  public getIntervals(): Observable<Interval[]> {
     let requestUrl = this._intervalsUrl;
 
     return this.http.get(requestUrl).pipe(
