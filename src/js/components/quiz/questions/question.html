@@ -6,15 +6,15 @@
           <div class="determinate" [ngStyle]="{'width': progress + '%'}"></div>
         </div>
         <div class="card-content center-align black-text">
-          <span class="card-title teal-text">Question {{ question.id }} of {{ quizService.totalQuestions }}</span>
+          <span class="card-title teal-text">Question {{ question.id }} sur {{ quizService.totalQuestions }}</span>
 
           <ng-template container-ref></ng-template>
 
           <div animates animatesInitMode="show" [animatesOnInit]="{type:'fadeInDown', fixed: false, duration: 400}" *ngIf="hasAnswer" class="next" hidden>
-            <span #button (click)="nextQuestion(button)" class="waves-effect waves-light btn-large">Next Question</span>
+            <span #button (click)="nextQuestion(button)" class="waves-effect waves-light btn-large">Suite</span>
           </div>
           <div class="next grey-text text-lighten-1" [hidden]="hasAnswer">
-            Answer the question above to continue.
+            Choisissez une réponse afin de continuer.
           </div>
         </div>
       </div>

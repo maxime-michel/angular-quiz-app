@@ -1,6 +1,6 @@
 <div materialize="modal" [materializeActions]="modalActions" [materializeParams]="[{dismissible: true}]" id="status" class="modal bottom-sheet">
   <div class="modal-content">
-    <h4 class="blue-grey-text">Quiz Status</h4>
+    <h4 class="blue-grey-text">Bilan du quiz</h4>
     <ul class="collection">
       <li *ngFor="let question of quizService.questions; let i = index" class="collection-item avatar">
         <i class="material-icons circle lighten-2" *ngIf="!question.answered || !question.statusTemplate" [ngClass]="{'grey': !question.answered, 'blue-grey': question.answered}">check_circle</i>
@@ -42,11 +42,11 @@
 
 
         <p class="blue-grey-text" *ngIf="question.answered">
-          <span class="grey-text">Your answer:</span> <span>{{ question.answer }}</span>
-          <span [hidden]="question.wasCorrect"><span class="grey-text"><br>Correct answer:</span> <span>{{ question.correctAnswer }}</span></span>
+          <span class="grey-text">Votre réponse :</span> <span>{{ question.answer }}</span>
+          <span [hidden]="question.wasCorrect"><span class="grey-text"><br>Réponse correcte :</span> <span>{{ question.correctAnswer }}</span></span>
         </p>
 
-        <p class="grey-text" *ngIf="!question.answered">Not yet answered</p>
+        <p class="grey-text" *ngIf="!question.answered">Encore aucune réponse</p>
         <span class="secondary-content" *ngIf="question.answered"><i class="material-icons green-text" [ngClass]="{'green-text': question.wasCorrect, 'red-text': !question.wasCorrect}">{{ question.wasCorrect ? 'check': 'close' }}</i></span>
       </li>
     </ul>
@@ -55,6 +55,6 @@
     </div>
   </div>
   <div class="done-button modal-footer">
-    <span class="modal-action modal-close waves-effect waves-green btn-flat">Done</span>
+    <span class="modal-action modal-close waves-effect waves-green btn-flat">OK</span>
   </div>
 </div>

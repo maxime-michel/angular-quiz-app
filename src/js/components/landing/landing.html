@@ -2,15 +2,15 @@
   <div class="col s12">
     <div class="card white">
       <div class="card-content center-align black-text">
-        <span class="card-title cyan-text">You're almost ready to start!</span>
+        <span class="card-title cyan-text">Configuration du quiz</span>
         <div class="input-field col s12">
           <select [(ngModel)]="regionSelection" materialize="material_select" [materializeSelectOptions]="selectOptions">
             <option *ngFor="let option of selectOptions" [value]="option.value">{{option.name}}</option>
           </select>
-          <label>Choose your region</label>
+          <label>Choisissez votre niveau</label>
         </div>
         <p>
-          <a (click)="startQuiz()" class="waves-effect waves-light btn btn-large cyan">Start Quiz</a>
+          <a (click)="startQuiz()" class="waves-effect waves-light btn btn-large cyan">Démarrer</a>
         </p>
       </div>
     </div>
