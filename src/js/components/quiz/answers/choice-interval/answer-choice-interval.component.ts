@@ -17,7 +17,7 @@ import commonStyle from '../common.css';
 })
 export class AnswerChoiceIntervalComponent extends GenericAnswer {
 
-  public answers: { title: string, correct: boolean }[] = [];
+  public answers: { title: string, correct: boolean, enabled: boolean }[] = [];
 
   constructor(private quizService: QuizService) {
     super();
@@ -28,9 +28,9 @@ export class AnswerChoiceIntervalComponent extends GenericAnswer {
 
     for (let interval of this.quizService.intervals) {
       if (interval.name === this.question.interval.name) {
-        answers.push({title: interval.name, correct: true});
+        answers.push({title: interval.name, correct: true, enabled: true});
       } else {
-        answers.push({title: interval.name, correct: false});
+        answers.push({title: interval.name, correct: false, enabled: interval.difficulty <= this.quizService.getDifficulty()});
       }
     }
 

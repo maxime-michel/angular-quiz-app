@@ -5,6 +5,7 @@ import { Injectable, EventEmitter, isDevMode } from '@angular/core';
 
 import { shuffle, scrollTo } from 'app/helpers';
 import { PlaylistService } from './playlist.service';
+import LocaleService from './locale.service';
 
 import { Playlist, Track, Question, QuestionType, Interval } from 'app/contracts';
 
@@ -27,7 +28,7 @@ export class QuizService {
   private _random: Track[];
   private _questions: Question[];
 
-  constructor(private playlistService: PlaylistService) {
+  constructor(private playlistService: PlaylistService, private localeService: LocaleService) {
 
   }
 
@@ -116,9 +117,12 @@ export class QuizService {
     return question.correctAnswer;
   }
 
+  public getDifficulty() {
+    return this.localeService.difficulty || 0;
+  }
+
   private loadProductionData(): Observable<Question[]> {
     return this.playlistService.getIntervals().pipe(
-        filter((interval: Interval) => interval.difficulty === 0), // TODO: read that from ctx
         map((intervals: Interval[]) => this.buildQuestions(intervals))
       );
   }
@@ -193,14 +197,14 @@ export class QuizService {
 
   private buildQuestions(intervals: Interval[]) {
     this._intervals = intervals;
-    let questions: Question[] = [];
-    let count = 0;
+    this._questions = [];
 
-    for (let interval of intervals) {
-      count++;
+    for (let i = 1; i <= this._numberOfQuestions; i++) {
+      // slice(0) to create a shallow copy and keep intervals ordered
+      let interval: Interval = shuffle(intervals.slice(0)).filter(el => el.difficulty <= this.getDifficulty())[0];
 
       let question: Question = {
-        id: -1,
+        id: i,
         type: QuestionType.Interval,
         interval: interval,
         answer: undefined,
@@ -209,18 +213,8 @@ export class QuizService {
         wasCorrect: false
       };
 
-      questions.push(question);
+      this._questions.push(question);
     }
-
-    count = 0;
-    this._questions = shuffle(questions).map((question) => {
-      question.id = ++count;
-      return question;
-    });
-
-    questions[0].id = 1;
-    this._questions.unshift(questions[0]);
-
     return this._questions;
   }
 

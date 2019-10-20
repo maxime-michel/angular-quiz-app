@@ -9,6 +9,7 @@ export interface LocaleData {
 export class LocaleService {
 
   private _locale: LocaleData;
+  private _difficulty = 0;
 
   private localStorageAvailable(): boolean {
     if (typeof (Storage) !== "undefined" && localStorage) {
@@ -42,6 +43,32 @@ export class LocaleService {
     }
 
     this._locale = locale;
+  }
+
+  get difficulty(): number {
+    let difficulty = null;
+
+    if (this.localStorageAvailable()) {
+      try {
+        difficulty = JSON.parse(localStorage.getItem('hue.difficulty'));
+      } catch (e) { }
+    }
+
+    if (difficulty !== null) {
+      this._difficulty = difficulty;
+    }
+
+    return this._difficulty;
+  }
+
+  set difficulty(difficulty: number) {
+    if (this.localStorageAvailable()) {
+      try {
+        localStorage.setItem('hue.difficuly', difficulty);
+      } catch (e) { }
+    }
+
+    this._difficulty = difficulty;
   }
 
 }

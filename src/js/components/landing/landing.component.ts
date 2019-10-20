@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { AnimationService, AnimationBuilder } from 'css-animator';
 import { LocaleService } from 'app/services';
-import { RegionOptions, REGION_VALUES } from './region_options';
+import { DifficultyOptions, DIFFICULTY_VALUES } from './difficulty_options';
 
 import template from './landing.html';
 import mainStyle from './landing.css';
@@ -20,11 +20,11 @@ import mainStyle from './landing.css';
 })
 export class LandingComponent implements OnInit, AfterViewInit {
 
-  public selectOptions: RegionOptions[] = REGION_VALUES;
+  public selectOptions: DifficultyOptions[] = DIFFICULTY_VALUES;
   public submitted = false;
 
   private _animator: AnimationBuilder;
-  private _regionSelection: any;
+  private _difficultySelection: any;
 
   constructor(
     private _elementRef: ElementRef,
@@ -35,7 +35,7 @@ export class LandingComponent implements OnInit, AfterViewInit {
   }
 
   public ngOnInit() {
-    this._regionSelection = this._localeService.locale.value;
+    this._difficultySelection = this._localeService.difficulty;
   }
 
   public ngAfterViewInit() {
@@ -46,21 +46,21 @@ export class LandingComponent implements OnInit, AfterViewInit {
       .show(this._elementRef.nativeElement);
   }
 
-  get regionSelection() {
-    return this._regionSelection;
+  public difficultySelection() {
+    return this._difficultySelection;
   }
 
-  set regionSelection(value) {
-    let locale;
+  set difficultySelection(value) {
+    let difficulty;
 
-    for (let region of this.selectOptions) {
-      if (region.value === value) {
-        locale = region;
+    for (let level of this.selectOptions) {
+      if (level.value === value) {
+        difficulty = level;
       }
     }
 
-    this._localeService.locale = locale || value;
-    this._regionSelection = value;
+    this._localeService.difficulty = difficulty || value;
+    this._difficultySelection = value;
   }
 
   public startQuiz(): void {

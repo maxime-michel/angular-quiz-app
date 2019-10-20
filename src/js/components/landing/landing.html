@@ -4,7 +4,7 @@
       <div class="card-content center-align black-text">
         <span class="card-title cyan-text">Configuration du quiz</span>
         <div class="input-field col s12">
-          <select [(ngModel)]="regionSelection" materialize="material_select" [materializeSelectOptions]="selectOptions">
+          <select [(ngModel)]="difficultySelection" materialize="material_select" [materializeSelectOptions]="selectOptions">
             <option *ngFor="let option of selectOptions" [value]="option.value">{{option.name}}</option>
           </select>
           <label>Choisissez votre niveau</label>
