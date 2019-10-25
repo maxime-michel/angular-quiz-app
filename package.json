@@ -82,6 +82,7 @@
       "@angular/http": "npm:@angular/http@^7.2.15",
       "@angular/platform-browser-dynamic": "npm:@angular/platform-browser-dynamic@^8.0.0",
       "@angular/router": "npm:@angular/router@^8.0.0",
+      "@tonaljs/tonal": "npm:@tonaljs/tonal@^3.2.2",
       "angular2-materialize": "npm:angular2-materialize@^15.0.1",
       "css-animator": "npm:css-animator@^2.3.1",
       "hammerjs": "npm:hammerjs@^2.0.8",

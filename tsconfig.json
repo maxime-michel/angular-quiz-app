@@ -356,6 +356,13 @@
 			"source-map-support/*": [
 				"jspm_packages/npm/source-map-support@0.5.12/*",
 				"jspm_packages/npm/source-map-support@0.5.12/*/index"
+			],
+			"@tonaljs/tonal": [
+				"jspm_packages/npm/@tonaljs/tonal@3.2.2"
+			],
+			"@tonaljs/tonal/*": [
+				"jspm_packages/npm/@tonaljs/tonal@3.2.2/*",
+				"jspm_packages/npm/@tonaljs/tonal@3.2.2/*/index"
 			]
 		}
 	}

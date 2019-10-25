@@ -86,6 +86,7 @@ SystemJS.config({
     "github:*/*.json"
   ],
   map: {
+    "@tonaljs/tonal": "npm:@tonaljs/tonal@3.2.2",
     "@angular/common": "npm:@angular/common@8.0.0",
     "@angular/compiler": "npm:@angular/compiler@8.0.0",
     "@angular/core": "npm:@angular/core@8.0.0",
